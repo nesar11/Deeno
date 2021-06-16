@@ -1,0 +1,87 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="angForm" novalidate>
+      <div class="form-group">
+        <label class="col-md-4">project Name</label>
+        <input type="text" class="form-control"
+          formControlName="projectName"
+          #projectName
+          [(ngModel)] = "project.projectName"/>
+      </div>
+      <div *ngIf="angForm.controls['projectName'].invalid && (angForm.controls['projectName'].dirty || angForm.controls['projectName'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['projectName'].errors.required">
+          Project Name is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">project Description </label>
+        <textarea class="form-control" rows = 7 cols = "5"
+        formControlName="story"
+        #story [(ngModel)] = "project.story"></textarea>
+      </div>
+      <div *ngIf="angForm.controls['story'].invalid && (angForm.controls['story'].dirty || angForm.controls['story'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['story'].errors.required">
+          story is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Duration</label>
+        <input type="text" class="form-control"
+          formControlName="duration"
+          #duration
+          [(ngModel)] = "project.duration"
+        />
+      </div>
+      <div *ngIf="angForm.controls['duration'].invalid && (angForm.controls['duration'].dirty || angForm.controls['duration'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['duration'].errors.required">
+          project Price is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Start Date</label>
+        <input type="date" class="form-control"
+          formControlName="startTime"
+          #startTime
+          [(ngModel)] = "project.startTime"
+        />
+      </div>
+      <div *ngIf="angForm.controls['startTime'].invalid && (angForm.controls['startTime'].dirty || angForm.controls['startTime'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['startTime'].errors.required">
+          startTime is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">End Date</label>
+        <input type="date" class="form-control"
+          formControlName="endTime"
+          #endTime
+          [(ngModel)] = "project.endTime"
+        />
+      </div>
+      <div *ngIf="angForm.controls['endTime'].invalid && (angForm.controls['endTime'].dirty || angForm.controls['endTime'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['endTime'].errors.required">
+          endTime is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Status</label>
+        <input type="text" class="form-control"
+          formControlName="status"
+          #status
+          [(ngModel)] = "project.status"
+        />
+      </div>
+      <div *ngIf="angForm.controls['status'].invalid && (angForm.controls['status'].dirty || angForm.controls['status'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['status'].errors.required">
+          endTime is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <button (click) = "updateProject(projectName.value, story.value, duration.value, startTime.value, endTime.value, status.value)" type="submit" class="btn btn-primary"
+        [disabled]="angForm.invalid" >
+          Update project
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

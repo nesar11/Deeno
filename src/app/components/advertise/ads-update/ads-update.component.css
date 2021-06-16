@@ -1,0 +1,10 @@
+.card{
+  width: 557px;
+  margin: auto;
+  margin-top: 1rem;
+  }
+  .btn-primary {
+    color: #fff;
+    background-color: #ff4081;
+    border-color: #ff4081;
+  }
