@@ -42,7 +42,7 @@ return !!localStorage.getItem('token')
 }
 
 getToken(){
-return localStorage.getItem('token')
+return localStorage.getItem('auth_tkn')
 this._router.navigate(['/products'])
 }
 

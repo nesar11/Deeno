@@ -8,6 +8,8 @@ import { AuthComponent } from '../../components/auth/auth.component';
 
 import { AuthService } from '../auth/auth.service';
 import { AuthGuard} from '../auth/auth.guard';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -28,7 +30,10 @@ const routes: Routes = [
     AuthComponent
   ],
   imports: [ RouterModule.forChild(routes),
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   exports: [
     RouterModule

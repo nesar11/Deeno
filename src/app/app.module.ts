@@ -28,7 +28,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 
-import { TokenInterceptorService} from './service/token-interceptor.service';
+import { TokenInterceptorService} from './components/auth/token-interceptor.service';
 import { FormsModule } from '@angular/forms';
 import { PAddComponent } from './components/project/p-add/p-add.component';
 import { PEditComponent } from './components/project/p-edit/p-edit.component';
@@ -74,10 +74,6 @@ import {AuthModule} from './components/auth/auth.module';
     MatListModule,
     FormsModule,
     NgbModule,
-
-
-
-
   ],
   providers: [
     {
@@ -85,7 +81,6 @@ import {AuthModule} from './components/auth/auth.module';
       useClass: TokenInterceptorService,
       multi: true
     }
-
   ],
   bootstrap: [AppComponent]
 })

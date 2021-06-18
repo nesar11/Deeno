@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
+import {AuthService} from '../auth/auth.service';
+import { Routes, RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-side-nav',
@@ -16,6 +19,12 @@ export class SideNavComponent {
       shareReplay()
     );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver,
+    public auth: AuthService, private router: Router) {}
+
+    logout(): void {
+      this.auth.logout();
+      this.router.navigate(['/auth/login'], {queryParams: {loggedOut: 'success'}});
+    }
 
 }

@@ -17,9 +17,9 @@ import { PEditComponent } from './components/project/p-edit/p-edit.component';
 import { PViewComponent } from './components/project/p-view/p-view.component';
 import { AuthGuard } from './components/auth/auth.guard';
 export const routes: Routes = [
-  {path: 'add', component: CoinAddComponent},
-  {path: 'coins', component: CoinViewsComponent},
-  {path: 'edit/:id', component: CoinUpdateComponent},
+  {path: 'add', component: CoinAddComponent, canActivate: [AuthGuard]},
+  {path: 'coins', component: CoinViewsComponent, canActivate: [AuthGuard]},
+  {path: 'edit/:id', component: CoinUpdateComponent, canActivate: [AuthGuard]},
   {path: 'create', component: AdsAddComponent},
   {path: 'adsUnits', component: AdsViewsComponent},
   {path: 'adsEdit/:id', component: AdsUpdateComponent},
