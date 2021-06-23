@@ -58,4 +58,7 @@ export class AuthService {
       public getUsername(): string {
       return this.decodedToken.username;
   }
+  getUser(){
+    return this.http.get(`${this.uriseg}`);
+  }
 }

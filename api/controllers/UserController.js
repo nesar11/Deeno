@@ -37,40 +37,84 @@ exports.resgister = function(req, res){
 }
 
 
-exports.login = function(req, res){
-    const { email, password } = req.body
+// exports.login = function(req, res){
+//     const { email, password } = req.body
 
-    if (!email || !password) {
-      return res.status(422).json({ 'error': 'Please provide email or password' })
+//     if (!email || !password) {
+//       return res.status(422).json({ 'error': 'Please provide email or password' })
+//     }
+//     User.findOne({ email }, function (err, user) {
+//       if (err) {
+//         return res.status(422).json({
+//           'error': 'Oops! Something went wrong'
+//         })
+//       }
+
+//       if (!user) {
+//         return res.status(422).json({ 'error': 'Invalid user' })
+//       }
+
+//       if (user.hasSamePassword(password)) {
+//         json_token = jwt.sign(
+//           {
+//             userId: user.id,
+//             username: user.username
+//           },
+//           env.secret,
+//           { expiresIn: '1h' })
+
+//         return res.json(0)
+//       }
+//       else {
+//         return res.status(422).json({ 'error': 'Wrong email or password' })
+//       }
+//     })
+
+// }
+exports.login = function (req, res) {
+  const { email, password } = req.body
+
+  if (!email || !password) {
+    return res.status(422).json({ 'error': 'Please provide email or password' })
+  }
+  User.findOne({ email }, function (err, user) {
+    if (err) {
+      return res.status(422).json({
+        'error': 'Oops! Something went wrong'
+      })
     }
-    User.findOne({ email }, function (err, user) {
-      if (err) {
-        return res.status(422).json({
-          'error': 'Oops! Something went wrong'
-        })
-      }
 
-      if (!user) {
-        return res.status(422).json({ 'error': 'Invalid user' })
-      }
+    if (!user) {
+      return res.status(422).json({ 'error': 'Invalid user' })
+    }
 
-      if (user.hasSamePassword(password)) {
-        json_token = jwt.sign(
-          {
-            userId: user.id,
-            username: user.username
-          },
-          env.secret,
-          { expiresIn: '1h' })
+    if (user.hasSamePassword(password)) {
+      json_token = jwt.sign(
+        {
+          userId: user.id,
+          username: user.username
+        },
+        env.secret,
+        { expiresIn: '1h' })
 
-        return res.json(json_token)
-      }
-      else {
-        return res.status(422).json({ 'error': 'Wrong email or password' })
-      }
-    })
-
+      return res.json(json_token)
+    }
+    else {
+      return res.status(422).json({ 'error': 'Wrong email or password' })
+    }
+  })
 }
+
+exports.allUser = function(req, res){
+  User.find(function(err, users){
+    if(err){
+      console.log(err)
+    } else{
+      res.json(users)
+    }
+  })
+}
+
 
 
 exports.authMiddleware = function (req, res, next) {

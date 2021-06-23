@@ -1,65 +1,15 @@
 const express = require('express');
 const app = express();
 const productRoutes = express.Router();
-
-let Product = require('../models/Product');
-
-productRoutes.route('/add').post(function(req, res){
-let product = Product(req.body);
-product.save().then(product=>{
-    res.status(200).json({'Product':'Product Added Successfully'});
-  })
-  .catch(err=>{
-      res.status(400).send('Product unable to save in DB')
-    });
-});
-
-productRoutes.route('/').get(function(req, res){
-  Product.find(function(err, products){
-      if(err){
-        console.log(err);
-      }
-      else{
-        res.json(products)
-      }
-    })
-  })
-
-  productRoutes.route('/edit/:id').get(function(req, res){
-    Product.findById(req.params.id, function(err, product){
-      res.json(product)
-    })
-  })
-  //  Defined update route
-productRoutes.route('/update/:id').post(function (req, res) {
-  Product.findById(req.params.id, function(err, product) {
-    if (!product)
-      res.status(404).send("Record not found");
-    else {
-      product.ProductName = req.body.ProductName;
-      product.ProductDescription = req.body.ProductDescription;
-      product.ProductPrice = req.body.ProductPrice;
-      product.StartDate = req.body.StartDate;
-      product.EndDate = req.body.EndDate;
-      product.Status = req.body.Status;
-
-      product.save().then(product => {
-          res.json('Update complete');
-      })
-      .catch(err => {
-            res.status(400).send("unable to update the database");
-      });
-    }
-  });
-});
+const product = require('../controllers/productController')
+const auth = require('../middleWares/guard')
+const Product = require('../models/Product');
 
 
-
-  productRoutes.route('/delete/:id').get(function (req, res) {
-    Product.findByIdAndRemove({_id: req.params.id}, function(err, product){
-        if(err) res.json(err);
-        else res.json('Successfully removed');
-    });
-});
+productRoutes.post('/add', auth.authMiddleware, product.addProject)
+productRoutes.get('/', auth.authMiddleware, product.allProject)
+productRoutes.get('/edit/:id', auth.authMiddleware, product.editProduct)
+productRoutes.post('/update/:id', auth.authMiddleware, product.updateProject)
+productRoutes.get('/delete/:id', auth.authMiddleware, product.deleteProduct)
 
 module.exports = productRoutes;

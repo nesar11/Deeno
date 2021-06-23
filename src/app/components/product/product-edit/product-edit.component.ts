@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProductService } from 'src/app/service/product.service';
+import { ProductService } from '../../../service/product.service';
 
 
 @Component({
@@ -25,21 +25,25 @@ export class ProductEditComponent implements OnInit {
     this.angForm = this.fb.group({
       ProductName: ['', Validators.required ],
       ProductDescription: ['', Validators.required ],
-      ProductPrice: ['', Validators.required ]
+      ProductPrice: ['', Validators.required ],
+      StartDate: ['', Validators.required ],
+      EndDate: ['', Validators.required ],
+      Status: ['', Validators.required ],
     });
   }
     ngOnInit(): void {
       this.route.params.subscribe(params =>{
         this.ps.editProduct(params['id']).subscribe(res => {
           this.product = res;
+          console.log(this.product);
       })
     })
   }
 
 
-  updateProduct(ProductName, ProductDescription, ProductPrice) {
+  updateProduct(ProductName, ProductDescription, ProductPrice,StartDate, EndDate, Status) {
     this.route.params.subscribe(params => {
-      this.ps.updateProduct(ProductName, ProductDescription, ProductPrice, params['id']);
+      this.ps.updateProduct(ProductName, ProductDescription, ProductPrice, StartDate, EndDate, Status, params['id']);
       this.router.navigate(['products']);
     });
   }

@@ -10,6 +10,7 @@ import { AuthService } from '../auth/auth.service';
 import { AuthGuard} from '../auth/auth.guard';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { UserViewComponent } from './user-view/user-view.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,8 @@ const routes: Routes = [
     component: AuthComponent,
     children: [
       { path: 'login', component: LoginComponent ,canActivate: [AuthGuard]},
-      { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] }
+      { path: 'register', component: RegisterComponent, canActivate: [AuthGuard] },
+      { path: 'users', component: UserViewComponent, canActivate: [AuthGuard] }
     ]
   }
 ];
@@ -27,7 +29,8 @@ const routes: Routes = [
     RegisterComponent,
     LoginComponent,
     ProfileComponent,
-    AuthComponent
+    AuthComponent,
+    UserViewComponent
   ],
   imports: [ RouterModule.forChild(routes),
     CommonModule,

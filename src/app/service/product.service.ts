@@ -27,11 +27,14 @@ export class ProductService {
   editProduct(id){
     return this.http.get(`${this.uri}/edit/${id}`);
   }
-    updateProduct(ProductName, ProductDescription, ProductPrice, id) {
+    updateProduct(ProductName, ProductDescription, ProductPrice, StartDate, EndDate, Status, id) {
       const obj = {
         ProductName,
         ProductDescription,
-        ProductPrice
+        ProductPrice,
+        StartDate,
+        EndDate,
+        Status
       };
       this
         .http

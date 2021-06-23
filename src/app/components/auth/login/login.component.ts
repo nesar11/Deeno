@@ -50,10 +50,11 @@ initForm(): void {
     this.errors = [];
     this.auth.login(this.loginForm.value)
       .subscribe((token) => {
-        this.router.navigate(['/coins'], { queryParams: { loggedin: 'success' } });
+        this.router.navigate(['/'], { queryParams: { loggedin: 'success' } });
        },
         (errorResponse) => {
           this.errors.push(errorResponse.error.error);
         });
   }
+
 }

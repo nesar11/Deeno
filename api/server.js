@@ -13,6 +13,7 @@ const express = require('express'),
     projectRoutes = require('./router/projectRoutes');
 
     mongoose.Promise = global.Promise;
+    mongoose.set('useCreateIndex', true);
     mongoose.connect(config.DB, {
       useNewUrlParser: true,
       useUnifiedTopology: true

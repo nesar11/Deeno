@@ -38,7 +38,46 @@
         </div>
       </div>
       <div class="form-group">
-        <button (click) = "updateProduct(ProductName.value, ProductDescription.value, ProductPrice.value)" type="submit" class="btn btn-primary"
+        <label class="col-md-4">Product Price</label>
+        <input type="text" class="form-control"
+          formControlName="StartDate"
+          #StartDate
+          [(ngModel)] = "product.StartDate"
+        />
+      </div>
+      <div *ngIf="angForm.controls['StartDate'].invalid && (angForm.controls['StartDate'].dirty || angForm.controls['StartDate'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['StartDate'].errors.required">
+          Start date is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Start date</label>
+        <input type="date" class="form-control"
+          formControlName="EndDate"
+          #EndDate
+          [(ngModel)] = "product.EndDate"
+        />
+      </div>
+      <div *ngIf="angForm.controls['EndDate'].invalid && (angForm.controls['EndDate'].dirty || angForm.controls['EndDate'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['EndDate'].errors.required">
+          End Date is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-md-4">Status</label>
+        <input type="date" class="form-control"
+          formControlName="Status"
+          #Status
+          [(ngModel)] = "product.Status"
+        />
+      </div>
+      <div *ngIf="angForm.controls['Status'].invalid && (angForm.controls['Status'].dirty || angForm.controls['Status'].touched)" class="alert alert-danger">
+        <div *ngIf="angForm.controls['Status'].errors.required">
+          Status is required.
+        </div>
+      </div>
+      <div class="form-group">
+        <button (click) = "updateProduct(ProductName.value, ProductDescription.value, ProductPrice.value, StartDate.value, EndDate.value, Status.value )" type="submit" class="btn btn-primary"
         [disabled]="angForm.invalid" >
           Update Product
         </button>
