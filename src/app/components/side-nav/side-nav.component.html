@@ -1,5 +1,6 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav" fixedInViewport
+  *ngIf="isLoggedIn"
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
       [opened]="(isHandset$ | async) === false">
@@ -15,19 +16,17 @@
 
       <a mat-list-item routerLink="/projects" routerLinkActive="active"> <span class=" navIcon material-icons">group_work</span>projects</a>
       <a mat-list-item routerLink="/auth/users" routerLinkActive="active"> <span class=" navIcon material-icons">people_outline</span>Users</a>
-      <a mat-list-item routerLink="/auth/login" routerLinkActive="active"> <span class=" navIcon material-icons">login</span>login</a>
-      <a mat-list-item routerLink="/auth/register" routerLinkActive="active"> <span class=" navIcon material-icons">verified</span>register</a>
       <a mat-list-item class="nav-link pointer" (click)="logout()"> <span class=" navIcon material-icons">verified</span>Logout</a>
 
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar color="primary" *ngIf="isLoggedIn">
       <button
         type="button"
         aria-label="Toggle sidenav"
         mat-icon-button
-        (click)="drawer.toggle()">
+        (click)="onSideNavToggle()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
       <span>EcoSystem</span>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { SideNavComponent } from '../../side-nav/side-nav.component';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnInit {
   constructor(private auth: AuthService,
               private router: Router,
               private fb: FormBuilder,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private sideNav : SideNavComponent) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -50,7 +52,8 @@ initForm(): void {
     this.errors = [];
     this.auth.login(this.loginForm.value)
       .subscribe((token) => {
-        this.router.navigate(['/'], { queryParams: { loggedin: 'success' } });
+        this.sideNav.isLoggedIn = true;
+        this.router.navigate(['/coins'], { queryParams: { loggedin: 'success' } });
        },
         (errorResponse) => {
           this.errors.push(errorResponse.error.error);
