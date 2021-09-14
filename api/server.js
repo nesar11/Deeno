@@ -10,8 +10,10 @@ const express = require('express'),
     businessRutes = require('./router/businessRoute'),
     productRoutes = require('./router/productRouter'),
     router = require('./router/userRoute'),
-    projectRoutes = require('./router/projectRoutes');
+    projectRoutes = require('./router/projectRoutes'),
+    casesRoutes = require('./router/casesRoute');
 
+    
     mongoose.Promise = global.Promise;
     mongoose.set('useCreateIndex', true);
     mongoose.connect(config.DB, {
@@ -35,12 +37,15 @@ const express = require('express'),
     app.use(morgan('dev'));
     const port = process.env.PORT || 4001;
 
+  
     app.use('/coins', coinRoutes);
     app.use('/adunits', adUnitRoutes);
     app.use('/business', businessRutes);
     app.use('/products', productRoutes);
     app.use('/users', router);
     app.use('/projects', projectRoutes);
+    app.use('/cases', casesRoutes);
+ 
 
 
     const  server = app.listen(port, function(){

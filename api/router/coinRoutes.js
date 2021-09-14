@@ -1,12 +1,16 @@
 const express = require('express');
-const coinRouter = express.Router();
-const coin = require('../controllers/adunitController');
+var Coin = require('../models/Coin');
+const app = express();
+var coinRoutes = express.Router();
+const coin = require('../controllers/coinController');
 const auth = require('../middleWares/guard');
 
-coinRouter.post('/add', auth.authMiddleware, coin.addCoin)
-coinRouter.get('/', auth.authMiddleware, coin.getAllCoin)
-coinRouter.get('/edit/:id', auth.authMiddleware, coin.getEditCoin)
-coinRouter.post('/update/:id', auth.authMiddleware, coin.updateCoin)
-coinRouter.get('/delete/:id', auth.authMiddleware, coin.deleteCoin)
+coinRoutes.post('/add', auth.authMiddleware, coin.addCoin)
+coinRoutes.get('/', auth.authMiddleware, coin.getAllCoin)
+coinRoutes.get('/edit/:id', auth.authMiddleware, coin.getEditCoin)
+coinRoutes.post('/update/:id', auth.authMiddleware, coin.updateCoin)
+coinRoutes.get('/delete/:id', auth.authMiddleware, coin.deleteCoin)
+coinRoutes.get('/search', auth.authMiddleware, coin.searchCoin)
 
-module.exports = coinRouter;
+
+module.exports = coinRoutes;

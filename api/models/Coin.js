@@ -9,7 +9,6 @@ var Coin = new Schema({
   price: {
     type: Number
   }
-},{timestamps: true},
-{ autoCreate: true, capped: 1024 });
+},{timestamps: true});
 
 module.exports = mongoose.model('Coin', Coin);

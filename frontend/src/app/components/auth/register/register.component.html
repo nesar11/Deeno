@@ -1,0 +1,145 @@
+<!-- register.component.html -->
+
+<div class="body" fxLayoutAlign="center center">
+  <div fxLayoutAlign="center center" fxFlexFill class="main-div">
+    <mat-card fxFlex="25">
+      <mat-toolbar color="primary"> register</mat-toolbar>
+      <form fxLayoutAlign="stretch" fxLayout="column" class="login-form" [formGroup]= "formData">
+        <mat-form-field appearance="fill">
+          <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+          <mat-icon matSuffix>person_outline</mat-icon>
+          <mat-error *ngIf="formData.get('email').hasError('pattern')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="formData.get('email').hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <input type="username" matInput formControlName="username" placeholder="eample: user11">
+          <mat-icon matSuffix>person_outline</mat-icon>
+          <mat-error *ngIf="formData.get('username').hasError('pattern')">
+            Please enter a valid username address
+          </mat-error>
+          <mat-error *ngIf="formData.get('username').hasError('required')">
+            username is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field  appearance="fill">
+          <input type="password" matInput formControlName="password" placeholder="Password">
+          <mat-icon matSuffix>lock</mat-icon>
+          <mat-error *ngIf="formData.get('password').hasError('pattern')">
+            Please enter a valid password
+          </mat-error>
+          <mat-error *ngIf="formData.get('password').hasError('required')">
+            password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field  appearance="fill">
+          <input type="password" matInput formControlName="passwordConfirmation" placeholder="passwordConfirmation">
+          <mat-icon matSuffix>lock</mat-icon>
+          <mat-error *ngIf="formData.get('passwordConfirmation').hasError('pattern')">
+            Please enter a valid password
+          </mat-error>
+          <mat-error *ngIf="formData.get('passwordConfirmation').hasError('required')">
+            passwordConfirmation is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="accent" (click)="register()"> Create user</button>
+        <div class="child-1" class="register-button" fxLayoutAlign="left right">
+          <a href=""></a><span mat-raised-button class="fxFlex" fxFlex="50" color="accent"> Forget password</span>
+          <span mat-raised-button class="nav-link" routerLink="/auth/login" class="fxFlex"  color="accent"> Login</span>
+        </div>
+
+      </form>
+
+    </mat-card>
+  </div>
+</div>
+
+<!--
+<div class="card">
+
+  <div class="card-body">
+
+      <h1 class="page-title">User Registration</h1>
+      <form #registerForm="ngForm">
+        <div class="form-group">
+          <div *ngIf="errors.length > 0" class="alert alert-danger">
+          <ul *ngFor = "let error of errors">
+              <li>{{ error }}</li>
+          </ul>
+          </div>
+          <label for="username">Username</label>
+         <input type="text"
+                 class="form-control"
+                 [(ngModel)] = "formData.username"
+                 name="username"
+                 #username = "ngModel"
+                 required>
+        </div>
+        <div *ngIf="username.invalid && (username.dirty || username.touched)"
+          class="alert alert-danger">
+          <div *ngIf="username.errors.required">
+            Username is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email"
+                 class="form-control"
+                 [(ngModel)] = "formData.email"
+                 name="email"
+                 #email = "ngModel"
+                 required>
+        </div>
+        <div *ngIf="email.invalid && (email.dirty || email.touched)"
+          class="alert alert-danger">
+          <div *ngIf="email.errors.required">
+            Email is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password"
+                 class="form-control"
+                 [(ngModel)] = "formData.password"
+                 #password = "ngModel"
+                 name="password"
+                 required>
+        </div>
+        <div *ngIf="password.invalid && (password.dirty || password.touched)"
+          class="alert alert-danger">
+          <div *ngIf="password.errors.required">
+            Password is required
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="passwordConfirmation">Confirm Password</label>
+          <input type="password"
+                 class="form-control"
+                 [(ngModel)] = "formData.passwordConfirmation"
+                 #passwordConfirmation = "ngModel"
+                 name="passwordConfirmation"
+                 required>
+        </div>
+         <div *ngIf="passwordConfirmation.invalid && (passwordConfirmation.dirty || passwordConfirmation.touched)"
+          class="alert alert-danger">
+          <div *ngIf="passwordConfirmation.errors.required">
+            Confirm Password is required
+          </div>
+        </div>
+        <button
+        (click) = "register()"
+        type="submit"
+        class="btn btn-warning"
+        [disabled] = "!registerForm.form.valid">Register</button> <a routerLink="/auth/login"> login</a>
+      </form>
+    </div>
+  </div>
+
+ -->

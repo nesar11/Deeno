@@ -1,55 +1,59 @@
 const express = require('express');
-const Coin = require('../models/Coin');
+const AdUnit = require('../models/AdUnit');
 
-exports.addCoin = function(req, res){
-    var coin = new Coin(req.body);
-   coin.save()
-    .then(item => {
-    res.status(200).json({'coin': 'Coin added successfully'});
+exports.addAds = function(req, res){
+  let adunit = new AdUnit(req.body);
+  adunit.save()
+  .then(game =>{
+    res.status(200).json({'adUnit': 'AdUnit is added successfuly'})
+
     })
-    .catch(err => {
-    res.status(400).send("unable to save to database");
-    });
+    .catch(err =>{
+      res.status(400).send("unable to save to database");
+  })
+}
 
-}
-exports.getAllCoin = function(req, res){
-    Coin.find(function (err, coins){
-        if(err){
-          console.log(err);
-        }
-        else {
-          res.json(coins);
-        }
-      });
-}
-exports.getEditCoin = function(req, res){
-    var id = req.params.id;
-  Coin.findById(id, function (err, coin){
-      res.json(coin);
+exports.getAllAds = function(req, res){
+  AdUnit.find(function (err, adUnits){
+    if(err){
+      console.log(err);
+    }
+    else {
+      res.json(adUnits);
+    }
   });
-}
-exports.updateCoin = function(req, res){
-    Coin.findById(req.params.id, function(err, coin) {
-        if (!coin)
-          return next(new Error('Could not load Document'));
-        else {
-          coin.name = req.body.name;
-          coin.price = req.body.price;
+};
 
-          coin.save().then(coin => {
-              res.json('Update complete');
-          })
-          .catch(err => {
-                res.status(400).send("unable to update the database");
-          });
-        }
+exports.getEditAds = function(req, res){
+  let id = req.params.id;
+  AdUnit.findById(id, function (err, adUnit){
+      res.json(adUnit);
+  });
+};
+
+exports.updateAds = function(req, res){
+  AdUnit.findById(req.params.id, function(err, adUnit) {
+    if (!adUnit)
+      return next(new Error('Could not load Document'));
+    else {
+        adUnit.unit_name = req.body.unit_name;
+        adUnit.unit_price = req.body.unit_price;
+
+        adUnit.save().then(adUnit => {
+          res.json('Update complete');
+      })
+      .catch(err => {
+            res.status(400).send("unable to update the database");
       });
-}
+    }
+  });
+};
 
 
-exports.deleteCoin = function(req, res){
-    Coin.findByIdAndRemove({_id: req.params.id}, function(err, coin){
-        if(err) res.json(err);
-        else res.json('Successfully removed');
-    });
-}
+exports.deleteAds = function(req, res){
+  AdUnit.findByIdAndRemove({_id: req.params.id}, function(err, adUnit){
+    if(err) res.json(err);
+    else res.json('Successfully removed');
+});
+};
+

@@ -97,7 +97,8 @@ exports.login = function (req, res) {
         env.secret,
         { expiresIn: '1h' })
 
-      return res.json(json_token)
+      return res.json(json_token);
+      console.log(json_token);
     }
     else {
       return res.status(422).json({ 'error': 'Wrong email or password' })

@@ -1,0 +1,24 @@
+
+.main-div mat-card{
+  padding: 0px;
+
+}
+.login-form {
+  padding: 20px;
+}
+.body{
+  background-color: rebeccapurple;
+  background-image: url("/assets/media/images/bg.jpg");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.register-button mat-button{
+  padding: 10px;
+
+}
+.fxFlex{
+  padding: 20px;
+}

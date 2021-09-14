@@ -1,0 +1,34 @@
+<nav class="navbar navbar-light bg-light">
+  <form class="form-inline">
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+</nav>
+<table class="table table-hover">
+
+  <thead>
+  <tr>
+      <td>Product Name</td>
+      <td>Product Description</td>
+      <td>Product Price</td>
+      <td>Start Date</td>
+      <td>End Date</td>
+      <td>Status</td>
+      <td >Actions</td>
+      <td> <button class="nav-link" routerLink="/productAdd" class="btn btn-primary">Add</button></td>
+  </tr>
+  </thead>
+
+  <tbody>
+      <tr *ngFor="let product of products">
+          <td>{{ product.ProductName }}</td>
+          <td>{{ product.ProductDescription }}</td>
+          <td>{{ product.ProductPrice }}</td>
+          <td>{{ product.StartDate }}</td>
+          <td>{{ product.EndDate }}</td>
+          <td>{{ product.Status }}</td>
+          <td><a [routerLink]="['/product', product._id]" class="btn btn-primary">Edit</a></td>
+          <td><a (click)="deleteProduct(product._id)" class="btn btn-danger">Delete</a></td>
+      </tr>
+  </tbody>
+</table>

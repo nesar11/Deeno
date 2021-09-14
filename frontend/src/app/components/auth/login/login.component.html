@@ -1,0 +1,37 @@
+<div class="body" fxLayoutAlign="center center">
+  <div fxLayoutAlign="center center" fxFlexFill class="main-div">
+    <mat-card fxFlex="25">
+      <mat-toolbar color="primary"> Login </mat-toolbar>
+      <form fxLayoutAlign="stretch" fxLayout="column" class="login-form" [formGroup]= "loginForm">
+        <mat-form-field appearance="fill">
+          <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+          <mat-icon matSuffix>person_outline</mat-icon>
+          <mat-error *ngIf="loginForm.get('email').hasError('pattern')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="loginForm.get('email').hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field  appearance="fill">
+          <input type="password" matInput formControlName="password" placeholder="Password">
+          <mat-icon matSuffix>lock</mat-icon>
+          <mat-error *ngIf="loginForm.get('password').hasError('pattern')">
+            Please enter a valid password
+          </mat-error>
+          <mat-error *ngIf="loginForm.get('password').hasError('required')">
+            password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="accent" (click)="login()"> Login</button>
+        <div class="child-1" class="register-button" fxLayoutAlign="left right">
+          <a href=""></a><span mat-raised-button class="fxFlex" fxFlex="50" color="accent"> Forget password</span>
+          <span mat-raised-button class="nav-link" routerLink="/auth/register" class="fxFlex"  color="accent"> New account</span>
+        </div>
+
+      </form>
+
+    </mat-card>
+  </div>
+</div>
