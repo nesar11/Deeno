@@ -34,8 +34,8 @@ export class CoinService {
         .subscribe(res => console.log('Done'));
   }
 
-  getCoins() {
-    const uri = 'http://localhost:4001/coins';
+  getCoins(query?) {
+    const uri = `http://localhost:4001/coins${query ? query : ''}`;
     return this
             .http
             .get(uri)

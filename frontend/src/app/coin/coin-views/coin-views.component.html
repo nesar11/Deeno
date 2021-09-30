@@ -1,14 +1,19 @@
 <!-- <app-widget-search-bar></app-widget-search-bar> -->
-<nav class="navbar navbar-light bg-light">
-  <!-- <form class="form-inline">
+<!-- <nav class="navbar navbar-light bg-light">
+  <form class="form-inline">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-  </form> -->
+  </form>
 
     <app-widget-search-bar-button></app-widget-search-bar-button>
 
 
-</nav>
+</nav> -->
+
+<div>
+  <input type="text" [(ngModel)]="coinSearch" (keyup)="onKeyup($event)">
+</div>
+
 <div class="space">
 
   <table class="table table-hover">
@@ -31,7 +36,7 @@
         <td>{{coin.updatedAt | date:'medium'}}  </td>
               <td><button [routerLink]="['/edit', coin._id]"  class="btn btn-primary">
                 <span class=" navIcon material-icons">edit</span> </button>
-         <span> </span> <button (click)="deleteCoin(coin._id)" class="btn btn-danger">
+         <span> </span> <button (click)="onDeleteCoin(coin._id)" class="btn btn-danger">
           <span class=" navIcon material-icons">delete</span></button> </td>
       </tr>
     </tbody>
